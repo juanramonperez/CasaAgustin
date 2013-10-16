@@ -1,0 +1,13 @@
+/* 
+    Document   : meicy
+    Created on : 23/08/2013, 17:35:41
+    Author     : gerardo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.view-ordenes-de-compra #edit-date-filter-min-wrapper,
+.view-ordenes-de-compra #edit-date-filter-max-wrapper{
+    float: left;
+}
+
