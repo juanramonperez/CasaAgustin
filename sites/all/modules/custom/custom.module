@@ -24,6 +24,7 @@ function custom_menu() {
  * Implements hook_init().
  */
 function custom_init() {
+  drupal_add_css(drupal_get_path('module', 'custom') . '/custom.css');
   if(arg(0) == 'admin' && arg(1) == 'productos'){
     drupal_add_library('system', 'drupal.ajax');
   }
@@ -40,11 +41,10 @@ function custom_test_page(){
  * Build the change stock link
  */
 function custom_build_change_stock_link($nid, $stock){
-  drupal_add_library('system', 'drupal.ajax');
   $output = '';
-  $output.= '<div>' . l('up', 'stock/' . $nid . '/up', array('attributes' => array('class' => array('use-ajax')))) . '</div>';
-  $output.= '<div class="stock-wrapper stock-wrapper-' . $nid . '">' . $stock . '</div> ';
-  $output.= '<div>' . l('down', 'stock/' . $nid . '/down', array('attributes' => array('class' => array('use-ajax')))) . '</div>';
+  $output.= '<div class="arrow-up-wrapper">' . l('up', 'stock/' . $nid . '/up', array('attributes' => array('class' => array('use-ajax', 'arrow-up')))) . '</div>';
+  $output.= '<div class="stock-wrapper"><div class="stock-quantity stock-' . $nid . '">' . $stock . '</div></div>';
+  $output.= '<div class="arrow-down-wrapper">' . l('down', 'stock/' . $nid . '/down', array('attributes' => array('class' => array('use-ajax', 'arrow-down')))) . '</div>';
   return $output;
 }
 
@@ -61,14 +61,14 @@ function custom_update_stock_callback($node, $direction){
           $node->field_cantidad[LANGUAGE_NONE][0]['value'] = 1;
         }
         node_save($node);
-        $commands[] = ajax_command_html('.stock-wrapper-' . $node->nid, $node->field_cantidad[LANGUAGE_NONE][0]['value']);
+        $commands[] = ajax_command_html('.stock-' . $node->nid, $node->field_cantidad[LANGUAGE_NONE][0]['value']);
         ajax_deliver(array('#type' => 'ajax', '#commands' => $commands));  
         break;      
       case 'down':
         if(isset($node->field_cantidad[LANGUAGE_NONE][0]['value']) && $node->field_cantidad[LANGUAGE_NONE][0]['value'] > 0){
           $node->field_cantidad[LANGUAGE_NONE][0]['value'] = $node->field_cantidad[LANGUAGE_NONE][0]['value'] - 1;
           node_save($node);
-          $commands[] = ajax_command_html('.stock-wrapper-' . $node->nid, $node->field_cantidad[LANGUAGE_NONE][0]['value']);
+          $commands[] = ajax_command_html('.stock-' . $node->nid, $node->field_cantidad[LANGUAGE_NONE][0]['value']);
           ajax_deliver(array('#type' => 'ajax', '#commands' => $commands));            
         }      
         break;

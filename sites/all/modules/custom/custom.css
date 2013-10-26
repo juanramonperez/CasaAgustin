@@ -11,3 +11,20 @@
     float: left;
 }
 
+a.arrow-up, a.arrow-down {
+    display: block;
+    text-indent: -9999px;
+    width: 24px;
+    height: 24px;
+    margin: auto;
+    background: url('images/arrow-up.png') no-repeat;
+}
+
+a.arrow-down {
+    background: url('images/arrow-down.png') no-repeat;
+}
+
+.stock-wrapper{
+    width: 100%;
+    text-align: center;
+}
