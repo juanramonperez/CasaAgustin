@@ -215,9 +215,9 @@ $databases = array (
   array (
     'default' => 
     array (
-      'database' => 'abertur3_music',
-      'username' => 'abertur3_cv',
-      'password' => 'lalala35122',
+      'database' => 'casa_agustin',
+      'username' => 'root',
+      'password' => 'qwerty',
       'host' => 'localhost',
       'port' => '',
       'driver' => 'mysql',
