@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Agustin Productos feature.
+ */
+
+include_once 'agustin_productos.features.inc';
